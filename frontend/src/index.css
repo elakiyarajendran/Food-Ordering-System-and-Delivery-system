@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-bg-deep: #0b0b0e;
+    --color-bg-card: #141419;
+    --color-bg-surface: #1a1a23;
+    --color-gold-light: #F7D592;
+    --color-gold-primary: #DFB76C;
+    --color-gold-dark: #B98E3B;
+    --color-gold-glow: rgba(223, 183, 108, 0.35);
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background-color: #0b0b0e;
+    color: #FAF8F5;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .font-serif-luxury {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+
+  .font-brand {
+    font-family: 'Cinzel', serif;
+  }
+
+  .font-script {
+    font-family: 'Alex Brush', cursive;
+  }
+}
+
+/* Luxury Gold Gradients and Glows */
+.gold-gradient-text {
+  background: linear-gradient(135deg, #FFF0D0 0%, #DFB76C 50%, #C49742 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-gradient-bg {
+  background: linear-gradient(135deg, #F3CA7E 0%, #DFB76C 50%, #BD923A 100%);
+}
+
+.gold-gradient-hover:hover {
+  background: linear-gradient(135deg, #FFE29E 0%, #EABF73 50%, #CA9C40 100%);
+}
+
+.gold-border-glow {
+  border: 1px solid rgba(223, 183, 108, 0.25);
+  box-shadow: 0 0 20px rgba(223, 183, 108, 0.08);
+}
+
+.gold-border-glow:hover {
+  border: 1px solid rgba(223, 183, 108, 0.5);
+  box-shadow: 0 0 30px rgba(223, 183, 108, 0.2);
+}
+
+.gold-glow-box {
+  box-shadow: 0 8px 32px 0 rgba(223, 183, 108, 0.18);
+}
+
+.gold-pill-active {
+  background: linear-gradient(135deg, #F3CA7E 0%, #DFB76C 100%);
+  color: #0d0d10;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(223, 183, 108, 0.35);
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0d0d12;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2a35;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #DFB76C;
+}
+
+/* Keyframe Animations */
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(1.5deg);
+  }
+}
+
+@keyframes pulseGold {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.95;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes orbitSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-float-slow {
+  animation: floatSlow 5s ease-in-out infinite;
+}
+
+.animate-pulse-gold {
+  animation: pulseGold 3s ease-in-out infinite;
+}
+
+.animate-orbit-spin {
+  animation: orbitSpin 24s linear infinite;
+}
+
+/* Leaflet Container Styling */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+  background-color: #141419 !important;
+}
+
+.leaflet-tile-pane {
+  filter: brightness(0.7) invert(1) contrast(3) hue-rotate(200deg) saturate(0.35);
+}

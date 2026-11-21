@@ -1,18 +1,20 @@
-// Local high-definition culinary image assets
+// Authentic high-definition image assets extracted directly from the original UI mockup
 export const LOCAL_IMAGES = {
-  burger: '/images/burger.svg',
-  pizza: '/images/pizza.svg',
-  pasta: '/images/pasta.svg',
-  dragonBowl: '/images/dragon-bowl.svg',
-  coffee: '/images/coffee.svg',
-  gourmetHub: '/images/gourmet-hub.svg',
-  pizzaPalace: '/images/pizza-palace.svg',
-  burgerBlvd: '/images/burger-blvd.svg',
-  pastaPlanet: '/images/pasta-planet.svg',
+  heroBurger: '/images/hero-burger.png',
+  burger: '/images/popular-burger.png',
+  pizza: '/images/popular-pizza.png',
+  pasta: '/images/popular-pasta.png',
+  dragonBowl: '/images/popular-dragon.png',
+  coffee: '/images/item-coffee.png',
+  gourmetHub: '/images/res-gourmet.png',
+  pizzaPalace: '/images/res-pizza.png',
+  burgerBlvd: '/images/res-burger.png',
+  pastaPlanet: '/images/res-pasta.png',
+  scooter: '/images/scooter-rider.png',
+  celebrationFood: '/images/celebration-food.png',
   restaurantCover: '/images/restaurant-cover.svg',
 };
 
-// Returns a reliable local image based on name or category
 export const getDishImage = (name = '') => {
   const lower = name.toLowerCase();
   if (lower.includes('burger')) return LOCAL_IMAGES.burger;
@@ -25,7 +27,7 @@ export const getDishImage = (name = '') => {
 
 export const getRestaurantImage = (name = '') => {
   const lower = name.toLowerCase();
-  if (lower.includes('gourmet')) return LOCAL_IMAGES.gourmetHub;
+  if (lower.includes('gourmet') || lower.includes('hub')) return LOCAL_IMAGES.gourmetHub;
   if (lower.includes('pizza')) return LOCAL_IMAGES.pizzaPalace;
   if (lower.includes('burger')) return LOCAL_IMAGES.burgerBlvd;
   if (lower.includes('pasta')) return LOCAL_IMAGES.pastaPlanet;

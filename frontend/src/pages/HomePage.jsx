@@ -15,7 +15,7 @@ export const HomePage = () => {
       time: '30 min',
       cost: '₹500 for two',
       discount: '50% OFF',
-      image: '/images/gourmet-hub.svg'
+      image: '/images/res-gourmet.png'
     },
     {
       id: 2,
@@ -25,7 +25,7 @@ export const HomePage = () => {
       time: '32 min',
       cost: '₹400 for two',
       discount: '20% OFF',
-      image: '/images/pizza-palace.svg'
+      image: '/images/res-pizza.png'
     },
     {
       id: 3,
@@ -35,7 +35,7 @@ export const HomePage = () => {
       time: '28 min',
       cost: '₹350 for two',
       discount: '30% OFF',
-      image: '/images/burger-blvd.svg'
+      image: '/images/res-burger.png'
     },
     {
       id: 4,
@@ -45,7 +45,7 @@ export const HomePage = () => {
       time: '35 min',
       cost: '₹450 for two',
       discount: '20% OFF',
-      image: '/images/pasta-planet.svg'
+      image: '/images/res-pasta.png'
     }
   ];
 
@@ -105,7 +105,7 @@ export const HomePage = () => {
                     {res.name}
                   </h3>
                   <div className="flex items-center gap-1 text-xs font-bold text-[#DFB76C]">
-                    <Star className="w-3 h-3 fill-current" />
+                    <Star className="w-3.5 h-3.5 fill-current" />
                     <span>{res.rating}</span>
                   </div>
                 </div>
@@ -114,7 +114,7 @@ export const HomePage = () => {
 
                 <div className="pt-2 flex items-center justify-between text-xs text-[#9E9EAA] border-t border-white/5">
                   <div className="flex items-center gap-1">
-                    <Clock className="w-3 h-3 text-[#DFB76C]" />
+                    <Clock className="w-3.5 h-3.5 text-[#DFB76C]" />
                     <span>{res.time}</span>
                   </div>
                   <span className="font-medium text-[#E2E2E6]">{res.cost}</span>

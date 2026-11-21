@@ -15,13 +15,11 @@ export const PaymentStatusPage = () => {
 
   useEffect(() => {
     if (paymentStatus === 'success') {
-      // Trigger the "cheerful bomb" confetti celebration (SRS FR-P4 & 5.2)
       triggerConfettiCelebration();
     }
   }, [paymentStatus]);
 
   const triggerConfettiCelebration = () => {
-    // Canvas confetti burst from center and sides
     const count = 200;
     const defaults = {
       origin: { y: 0.6 },
@@ -67,9 +65,18 @@ export const PaymentStatusPage = () => {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-tr from-[#DFB76C]/10 via-[#F3CA7E]/15 to-transparent rounded-full blur-[140px] pointer-events-none" />
 
       {/* Main Status Container (Matches UI Mockup Screen) */}
-      <div className="relative w-full max-w-2xl rounded-3xl bg-[#14141c]/95 border border-[#DFB76C]/40 p-8 sm:p-12 text-center shadow-2xl backdrop-blur-xl">
+      <div className="relative w-full max-w-3xl rounded-3xl bg-[#14141c]/95 border border-[#DFB76C]/40 p-8 sm:p-12 text-center shadow-2xl backdrop-blur-xl overflow-hidden">
         
-        {/* Calligraphy Decorative "Bon Appétit!" on Top Right (Exact from Mockup) */}
+        {/* Authentic Celebration Food (Fries and Drink) from Original Mockup */}
+        <div className="absolute -bottom-2 right-0 hidden sm:block pointer-events-none opacity-90">
+          <img
+            src="/images/celebration-food.png"
+            alt="Bon Appétit Celebration"
+            className="w-48 h-auto object-contain drop-shadow-[0_10px_20px_rgba(223,183,108,0.3)]"
+          />
+        </div>
+
+        {/* Calligraphy Decorative "Bon Appétit!" on Top Right */}
         <div className="absolute top-6 right-8 hidden sm:block">
           <span className="font-script text-3xl sm:text-4xl text-[#DFB76C] drop-shadow-md">
             Bon Appétit! ✨
@@ -105,7 +112,7 @@ export const PaymentStatusPage = () => {
         </div>
 
         {/* Action Buttons: "Back to Home" & "Track Order" */}
-        <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10">
           <Link
             to={`/track?order_id=${orderId}`}
             className="w-full sm:w-auto px-8 py-3.5 rounded-full font-bold text-sm text-[#0d0d12] gold-gradient-bg hover:opacity-95 shadow-xl shadow-[#DFB76C]/25 flex items-center justify-center gap-2 transition-all hover:scale-105 active:scale-95"

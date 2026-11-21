@@ -14,13 +14,12 @@ export const TrackOrderPage = () => {
   const { user } = useAuth();
 
   const [order, setOrder] = useState(null);
-  const [statusIndex, setStatusIndex] = useState(3); // Default: Out for delivery
+  const [statusIndex, setStatusIndex] = useState(2); // Default: Out for delivery
   const [isReviewOpen, setIsReviewOpen] = useState(false);
   const [callModal, setCallModal] = useState(false);
   const [chatModal, setChatModal] = useState(false);
   const [cancelMessage, setCancelMessage] = useState('');
 
-  // 5 Step Timeline matching UI Mockup & SRS FR-T1
   const TIMELINE_STEPS = [
     { title: 'Order Placed', time: '9:20 PM', statusKey: 'Placed' },
     { title: 'Preparing Your Food', time: '9:25 PM', statusKey: 'Preparing' },
@@ -28,19 +27,8 @@ export const TrackOrderPage = () => {
     { title: 'Delivered', time: '10:00 PM', statusKey: 'Delivered' },
   ];
 
-  // Coordinates along Chennai route: Restaurant (Nungambakkam) -> Delivery (Anna Nagar)
-  const ROUTE_COORDINATES = [
-    { lat: 13.0610, lng: 80.2370, progress: 0.1 },  // Restaurant
-    { lat: 13.0680, lng: 80.2280, progress: 0.4 },  // Chetpet
-    { lat: 13.0760, lng: 80.2200, progress: 0.75 }, // Kilpauk
-    { lat: 13.0850, lng: 80.2100, progress: 1.0 },  // Customer Home (Anna Nagar)
-  ];
-
-  const [scooterCoord, setScooterCoord] = useState(ROUTE_COORDINATES[2]);
-
   useEffect(() => {
     fetchOrderDetails();
-    // Polling fallback every 6 seconds as per SRS FR-T2
     const interval = setInterval(() => {
       fetchOrderDetails();
     }, 6000);
@@ -84,26 +72,21 @@ export const TrackOrderPage = () => {
         partner_rating: 4.9
       }
     });
-    setStatusIndex(2); // Out for delivery
+    setStatusIndex(2);
   };
 
   const mapStatusToStep = (status) => {
     if (status === 'Placed' || status === 'Accepted') {
       setStatusIndex(0);
-      setScooterCoord(ROUTE_COORDINATES[0]);
     } else if (status === 'Preparing' || status === 'Ready') {
       setStatusIndex(1);
-      setScooterCoord(ROUTE_COORDINATES[1]);
     } else if (status === 'Out for delivery') {
       setStatusIndex(2);
-      setScooterCoord(ROUTE_COORDINATES[2]);
     } else if (status === 'Delivered') {
       setStatusIndex(3);
-      setScooterCoord(ROUTE_COORDINATES[3]);
     }
   };
 
-  // Simulate real-time progress through steps (SRS FR-T2 & testing criteria)
   const handleSimulateNextStep = async () => {
     try {
       const res = await fetch(`/api/orders/${orderId}/simulate/`, { method: 'POST' });
@@ -112,10 +95,8 @@ export const TrackOrderPage = () => {
         setOrder(data);
         mapStatusToStep(data.status);
       } else {
-        // Local simulation fallback
         const nextIdx = (statusIndex + 1) % TIMELINE_STEPS.length;
         setStatusIndex(nextIdx);
-        setScooterCoord(ROUTE_COORDINATES[nextIdx]);
         if (order) {
           setOrder({ ...order, status: TIMELINE_STEPS[nextIdx].statusKey });
         }
@@ -123,7 +104,6 @@ export const TrackOrderPage = () => {
     } catch (e) {
       const nextIdx = (statusIndex + 1) % TIMELINE_STEPS.length;
       setStatusIndex(nextIdx);
-      setScooterCoord(ROUTE_COORDINATES[nextIdx]);
     }
   };
 
@@ -162,7 +142,6 @@ export const TrackOrderPage = () => {
           </div>
         </div>
 
-        {/* Live Simulation Control Button for Testing/Evaluation */}
         <div className="flex items-center gap-2">
           <button
             onClick={handleSimulateNextStep}
@@ -175,58 +154,70 @@ export const TrackOrderPage = () => {
         </div>
       </div>
 
-      {/* HORIZONTAL STEP TIMELINE (Exact match to UI Mockup Desktop Bottom Screen) */}
+      {/* HORIZONTAL STEP TIMELINE (Matches UI Mockup Desktop Bottom Screen) */}
       <div className="relative p-6 sm:p-8 rounded-3xl bg-[#14141c]/90 border border-[#DFB76C]/25 shadow-2xl overflow-hidden">
         
-        {/* Ambient gold glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-24 bg-[#DFB76C]/5 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative">
           
-          {/* Progress Connecting Line */}
-          <div className="absolute top-5 left-6 right-6 h-1 bg-[#252535] rounded-full hidden sm:block">
-            <div 
-              className="h-full bg-gradient-to-r from-[#F3CA7E] to-[#DFB76C] rounded-full transition-all duration-700 shadow-[0_0_15px_rgba(223,183,108,0.5)]"
-              style={{ width: `${(statusIndex / (TIMELINE_STEPS.length - 1)) * 100}%` }}
-            />
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            
+            {/* Steps Timeline Column */}
+            <div className="lg:col-span-9 relative">
+              <div className="absolute top-5 left-6 right-6 h-1 bg-[#252535] rounded-full hidden sm:block">
+                <div 
+                  className="h-full bg-gradient-to-r from-[#F3CA7E] to-[#DFB76C] rounded-full transition-all duration-700 shadow-[0_0_15px_rgba(223,183,108,0.5)]"
+                  style={{ width: `${(statusIndex / (TIMELINE_STEPS.length - 1)) * 100}%` }}
+                />
+              </div>
+
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-2 relative z-10">
+                {TIMELINE_STEPS.map((step, idx) => {
+                  const isPassed = idx <= statusIndex;
+                  const isCurrent = idx === statusIndex;
+                  return (
+                    <div key={idx} className="flex flex-col sm:items-center text-left sm:text-center space-y-2">
+                      <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${
+                        isPassed
+                          ? 'bg-gradient-to-tr from-[#F3CA7E] to-[#DFB76C] text-[#0d0d12] shadow-lg shadow-[#DFB76C]/30 scale-105'
+                          : 'bg-[#1e1e2c] border border-white/10 text-[#9E9EAA]'
+                      } ${isCurrent ? 'ring-4 ring-[#DFB76C]/25 animate-pulse' : ''}`}>
+                        {isPassed ? (
+                          <CheckCircle2 className="w-5 h-5 stroke-[2.5]" />
+                        ) : (
+                          <span className="text-xs font-bold">{idx + 1}</span>
+                        )}
+                      </div>
+
+                      <div>
+                        <h4 className={`text-xs sm:text-sm font-bold ${isPassed ? 'text-[#FAF8F5]' : 'text-[#9E9EAA]'}`}>
+                          {step.title}
+                        </h4>
+                        <p className="text-[11px] text-[#DFB76C] font-semibold mt-0.5">
+                          {step.time}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Authentic Animated Scooter Rider Graphic from Mockup */}
+            <div className="lg:col-span-3 flex justify-center lg:justify-end">
+              <div className="relative">
+                <img
+                  src="/images/scooter-rider.png"
+                  alt="Delivery Hero on Scooter"
+                  className="w-36 sm:w-44 h-auto object-contain drop-shadow-[0_10px_25px_rgba(223,183,108,0.3)] animate-pulse"
+                />
+              </div>
+            </div>
+
           </div>
 
-          {/* Steps */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-2 relative z-10">
-            {TIMELINE_STEPS.map((step, idx) => {
-              const isPassed = idx <= statusIndex;
-              const isCurrent = idx === statusIndex;
-              return (
-                <div key={idx} className="flex flex-col sm:items-center text-left sm:text-center space-y-2">
-                  
-                  {/* Step Node Icon */}
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${
-                    isPassed
-                      ? 'bg-gradient-to-tr from-[#F3CA7E] to-[#DFB76C] text-[#0d0d12] shadow-lg shadow-[#DFB76C]/30 scale-105'
-                      : 'bg-[#1e1e2c] border border-white/10 text-[#9E9EAA]'
-                  } ${isCurrent ? 'ring-4 ring-[#DFB76C]/25 animate-pulse' : ''}`}>
-                    {isPassed ? (
-                      <CheckCircle2 className="w-5 h-5 stroke-[2.5]" />
-                    ) : (
-                      <span className="text-xs font-bold">{idx + 1}</span>
-                    )}
-                  </div>
-
-                  {/* Title & Time */}
-                  <div>
-                    <h4 className={`text-xs sm:text-sm font-bold ${isPassed ? 'text-[#FAF8F5]' : 'text-[#9E9EAA]'}`}>
-                      {step.title}
-                    </h4>
-                    <p className="text-[11px] text-[#DFB76C] font-semibold mt-0.5">
-                      {step.time}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Animated Gliding Scooter on Track (Matches UI Mockup Graphic!) */}
+          {/* Status Controls */}
           <div className="mt-8 pt-4 border-t border-white/5 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-[#DFB76C]/10 text-[#DFB76C] flex items-center justify-center">
@@ -244,7 +235,6 @@ export const TrackOrderPage = () => {
               </div>
             </div>
 
-            {/* Cancel Button (FR-T6: Allowed before preparing) */}
             {statusIndex < 1 && (
               <button
                 onClick={handleCancelOrder}
@@ -273,16 +263,13 @@ export const TrackOrderPage = () => {
         </div>
       </div>
 
-      {/* TWO COLUMN GRID: Live Map & Delivery Partner Card (Matches Mobile Mockup) */}
+      {/* TWO COLUMN GRID: Live Map & Delivery Partner Card */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
         {/* Live Map Box */}
         <div className="lg:col-span-8 rounded-3xl bg-[#14141c] border border-white/10 overflow-hidden shadow-2xl relative h-[380px] sm:h-[420px]">
           
-          {/* Custom Stylized Map Graphic */}
           <div className="absolute inset-0 bg-[#0f1118] flex items-center justify-center overflow-hidden">
-            
-            {/* Simulated Road Grid Pattern */}
             <svg className="w-full h-full opacity-30" xmlns="http://www.w3.org/2000/svg">
               <defs>
                 <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
@@ -292,7 +279,6 @@ export const TrackOrderPage = () => {
               <rect width="100%" height="100%" fill="url(#grid)" />
             </svg>
 
-            {/* Simulated Navigation Route Line */}
             <svg className="absolute inset-0 w-full h-full">
               <path
                 d="M 120 280 Q 250 180, 420 210 T 680 120"
@@ -304,7 +290,7 @@ export const TrackOrderPage = () => {
               />
             </svg>
 
-            {/* Restaurant Pin Marker */}
+            {/* Restaurant Pin */}
             <div className="absolute left-[15%] bottom-[25%] flex flex-col items-center">
               <div className="px-2.5 py-1 rounded-md bg-[#161622] border border-[#DFB76C]/40 text-[10px] font-bold text-[#DFB76C] shadow-lg mb-1 whitespace-nowrap">
                 The Gourmet Hub
@@ -324,7 +310,7 @@ export const TrackOrderPage = () => {
               </div>
             </div>
 
-            {/* Moving Animated Scooter Marker (Position shifts with status!) */}
+            {/* Moving Scooter Marker */}
             <div 
               className="absolute transition-all duration-1000 flex flex-col items-center z-20"
               style={{
@@ -342,13 +328,11 @@ export const TrackOrderPage = () => {
 
           </div>
 
-          {/* Map Top Badge */}
           <div className="absolute top-4 left-4 bg-[#14141c]/90 backdrop-blur-md border border-white/10 rounded-2xl px-4 py-2 flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
             <span className="text-xs font-bold text-[#FAF8F5]">Live GPS Tracking Active</span>
           </div>
 
-          {/* ETA Floating Box */}
           <div className="absolute bottom-4 right-4 bg-[#14141c]/90 backdrop-blur-md border border-[#DFB76C]/30 rounded-2xl p-3 px-4 text-right">
             <span className="text-[10px] text-[#9E9EAA] block">Estimated Arrival</span>
             <span className="text-base font-extrabold text-[#DFB76C]">
@@ -358,10 +342,8 @@ export const TrackOrderPage = () => {
 
         </div>
 
-        {/* Right Column: Delivery Partner Card & Order Summary (Exact from Mobile Mockup Screen) */}
+        {/* Right Column: Delivery Partner Card */}
         <div className="lg:col-span-4 space-y-6">
-          
-          {/* Delivery Partner Sheet (Matches Mobile Tracking Screen) */}
           <div className="p-6 rounded-3xl bg-[#14141c] border border-[#DFB76C]/25 shadow-xl space-y-5">
             <div className="flex items-center justify-between">
               <div>
@@ -371,7 +353,6 @@ export const TrackOrderPage = () => {
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping" />
             </div>
 
-            {/* Partner Info */}
             <div className="flex items-center justify-between pt-2">
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-[#DFB76C] to-[#FFE29E] text-[#0d0d12] flex items-center justify-center font-bold text-lg shadow-md">
@@ -387,7 +368,6 @@ export const TrackOrderPage = () => {
                 </div>
               </div>
 
-              {/* Call & Message Action Buttons (Exact from UI mockup screen) */}
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setCallModal(true)}
@@ -406,7 +386,6 @@ export const TrackOrderPage = () => {
               </div>
             </div>
 
-            {/* Delivery address snippet */}
             <div className="p-3.5 rounded-2xl bg-[#1b1b26] border border-white/5 flex items-start gap-3 text-xs">
               <MapPin className="w-4 h-4 text-[#DFB76C] shrink-0 mt-0.5" />
               <div>
@@ -416,7 +395,6 @@ export const TrackOrderPage = () => {
             </div>
           </div>
 
-          {/* Order Summary & Bill */}
           <div className="p-6 rounded-3xl bg-[#14141c] border border-white/5 space-y-4">
             <h4 className="text-xs font-bold uppercase tracking-wider text-[#FAF8F5]">Order Items</h4>
             <div className="space-y-2 text-xs">
@@ -432,12 +410,11 @@ export const TrackOrderPage = () => {
               </div>
             </div>
           </div>
-
         </div>
 
       </div>
 
-      {/* Call Dialog Simulation */}
+      {/* Call Dialog */}
       {callModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
           <div className="w-full max-w-sm rounded-3xl bg-[#181824] border border-[#DFB76C]/40 p-6 text-center space-y-4 shadow-2xl">
@@ -457,7 +434,7 @@ export const TrackOrderPage = () => {
         </div>
       )}
 
-      {/* Chat Dialog Simulation */}
+      {/* Chat Dialog */}
       {chatModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
           <div className="w-full max-w-sm rounded-3xl bg-[#181824] border border-[#DFB76C]/40 p-5 space-y-4 shadow-2xl">
@@ -493,7 +470,6 @@ export const TrackOrderPage = () => {
         </div>
       )}
 
-      {/* Review Modal Triggered After Delivery */}
       <ReviewModal
         isOpen={isReviewOpen}
         onClose={() => setIsReviewOpen(false)}

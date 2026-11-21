@@ -12,7 +12,7 @@ from payments.models import Payment, Coupon
 from reviews.models import Review
 
 def run():
-    print("Updating restaurant & food item images to local assets...")
+    print("Updating restaurant & food item images to authentic UI mockup assets...")
     Review.objects.all().delete()
     Payment.objects.all().delete()
     OrderStatusHistory.objects.all().delete()
@@ -109,7 +109,7 @@ def run():
         delivery_time_mins=30,
         discount_percent=50,
         discount_code='FOOD50',
-        image='/images/gourmet-hub.svg',
+        image='/images/res-gourmet.png',
         featured=True
     )
 
@@ -128,7 +128,7 @@ def run():
         delivery_time_mins=32,
         discount_percent=20,
         discount_code='PIZZA20',
-        image='/images/pizza-palace.svg',
+        image='/images/res-pizza.png',
         featured=True
     )
 
@@ -147,7 +147,7 @@ def run():
         delivery_time_mins=28,
         discount_percent=30,
         discount_code='BURGER30',
-        image='/images/burger-blvd.svg',
+        image='/images/res-burger.png',
         featured=True
     )
 
@@ -166,7 +166,7 @@ def run():
         delivery_time_mins=35,
         discount_percent=20,
         discount_code='PASTA20',
-        image='/images/pasta-planet.svg',
+        image='/images/res-pasta.png',
         featured=True
     )
 
@@ -185,7 +185,7 @@ def run():
         is_popular=True,
         avg_rating=Decimal('4.8'),
         total_reviews=12400,
-        image='/images/pizza.svg'
+        image='/images/popular-pizza.png'
     )
     ItemOption.objects.create(item=f_pizza, name='Medium (10 inch)', extra_price=Decimal('0.00'))
     ItemOption.objects.create(item=f_pizza, name='Large (12 inch)', extra_price=Decimal('100.00'))
@@ -201,7 +201,7 @@ def run():
         is_popular=True,
         avg_rating=Decimal('4.7'),
         total_reviews=9200,
-        image='/images/burger.svg'
+        image='/images/popular-burger.png'
     )
     ItemOption.objects.create(item=f_burger, name='Single Patty', extra_price=Decimal('0.00'))
     ItemOption.objects.create(item=f_burger, name='Double Patty Deluxe', extra_price=Decimal('80.00'))
@@ -217,7 +217,7 @@ def run():
         is_popular=True,
         avg_rating=Decimal('4.8'),
         total_reviews=7400,
-        image='/images/pasta.svg'
+        image='/images/popular-pasta.png'
     )
     ItemOption.objects.create(item=f_pasta, name='Add Sautéed Mushrooms', extra_price=Decimal('40.00'))
     ItemOption.objects.create(item=f_pasta, name='Add Grilled Chicken', extra_price=Decimal('70.00'))
@@ -232,7 +232,7 @@ def run():
         is_popular=True,
         avg_rating=Decimal('4.9'),
         total_reviews=10300,
-        image='/images/dragon-bowl.svg'
+        image='/images/popular-dragon.png'
     )
 
     f_coffee = FoodItem.objects.create(
@@ -245,7 +245,7 @@ def run():
         is_popular=True,
         avg_rating=Decimal('4.9'),
         total_reviews=4300,
-        image='/images/coffee.svg'
+        image='/images/item-coffee.png'
     )
 
     FoodItem.objects.create(
@@ -258,7 +258,7 @@ def run():
         is_popular=False,
         avg_rating=Decimal('4.7'),
         total_reviews=1800,
-        image='/images/burger.svg'
+        image='/images/popular-burger.png'
     )
 
     order1 = Order.objects.create(
@@ -322,7 +322,7 @@ def run():
         reply='Thank you so much Elakiya! We are delighted you loved the pizza.'
     )
 
-    print("Database seeding with local assets completed!")
+    print("Database seeding with authentic UI mockup assets completed!")
 
 if __name__ == '__main__':
     run()

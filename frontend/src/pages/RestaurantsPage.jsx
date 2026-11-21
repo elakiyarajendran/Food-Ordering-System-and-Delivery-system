@@ -24,7 +24,7 @@ export const RestaurantsPage = () => {
   const CUISINES = ['All', 'Pizza', 'Burger', 'Chinese', 'Italian', 'Desserts', 'Healthy'];
   const CITIES = ['Chennai', 'Mumbai', 'Bangalore', 'Delhi', 'Hyderabad'];
 
-  // Static reliable local data matching the UI mockup
+  // Static reliable data with original images from UI mockup
   const MOCK_RESTAURANTS = [
     {
       id: 1,
@@ -37,7 +37,7 @@ export const RestaurantsPage = () => {
       cost_for_two: 500,
       discount_percent: 50,
       discount_code: 'FOOD50',
-      image: '/images/gourmet-hub.svg',
+      image: '/images/res-gourmet.png',
       is_veg: false
     },
     {
@@ -51,7 +51,7 @@ export const RestaurantsPage = () => {
       cost_for_two: 400,
       discount_percent: 20,
       discount_code: 'PIZZA20',
-      image: '/images/pizza-palace.svg',
+      image: '/images/res-pizza.png',
       is_veg: true
     },
     {
@@ -65,7 +65,7 @@ export const RestaurantsPage = () => {
       cost_for_two: 350,
       discount_percent: 30,
       discount_code: 'BURGER30',
-      image: '/images/burger-blvd.svg',
+      image: '/images/res-burger.png',
       is_veg: false
     },
     {
@@ -79,7 +79,7 @@ export const RestaurantsPage = () => {
       cost_for_two: 450,
       discount_percent: 20,
       discount_code: 'PASTA20',
-      image: '/images/pasta-planet.svg',
+      image: '/images/res-pasta.png',
       is_veg: true
     },
     {
@@ -93,7 +93,7 @@ export const RestaurantsPage = () => {
       cost_for_two: 380,
       discount_percent: 35,
       discount_code: 'DRAGON35',
-      image: '/images/dragon-bowl.svg',
+      image: '/images/popular-dragon.png',
       is_veg: false
     },
     {
@@ -107,7 +107,7 @@ export const RestaurantsPage = () => {
       cost_for_two: 420,
       discount_percent: 25,
       discount_code: 'GREEN25',
-      image: '/images/pasta.svg',
+      image: '/images/popular-pasta.png',
       is_veg: true
     }
   ];
@@ -320,7 +320,7 @@ export const RestaurantsPage = () => {
           </button>
         </div>
 
-        {/* Restaurant Cards Grid with SafeImage */}
+        {/* Restaurant Cards Grid with Authentic Images */}
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 pt-2">
           {filteredRestaurants.map((res) => (
             <Link

@@ -61,61 +61,23 @@ export const HeroSection = () => {
             </div>
           </div>
 
-          {/* Right Column: 3D Glowing Burger with Orbital Golden Light Ribbons */}
+          {/* Right Column: Original 3D Glowing Burger with Orbital Golden Light Ribbons */}
           <div className="lg:col-span-5 relative flex items-center justify-center">
-            <div className="relative w-72 sm:w-96 h-72 sm:h-96 flex items-center justify-center">
+            <div className="relative w-80 sm:w-96 h-80 sm:h-96 flex items-center justify-center">
               
-              {/* Luminous Orbital Ribbon (SVG Ring) */}
-              <div className="absolute inset-0 animate-orbit-spin pointer-events-none opacity-90">
-                <svg viewBox="0 0 400 400" className="w-full h-full">
-                  <defs>
-                    <linearGradient id="goldRibbon" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#FFE29E" stopOpacity="1" />
-                      <stop offset="40%" stopColor="#DFB76C" stopOpacity="0.8" />
-                      <stop offset="80%" stopColor="#B98E3B" stopOpacity="0.2" />
-                      <stop offset="100%" stopColor="#DFB76C" stopOpacity="0" />
-                    </linearGradient>
-                    <filter id="glow">
-                      <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
-                      <feMerge>
-                        <feMergeNode in="coloredBlur"/>
-                        <feMergeNode in="SourceGraphic"/>
-                      </feMerge>
-                    </filter>
-                  </defs>
-                  <ellipse 
-                    cx="200" cy="200" rx="175" ry="95" 
-                    fill="none" 
-                    stroke="url(#goldRibbon)" 
-                    strokeWidth="5" 
-                    transform="rotate(-28 200 200)"
-                    filter="url(#glow)"
-                  />
-                  <ellipse 
-                    cx="200" cy="200" rx="145" ry="75" 
-                    fill="none" 
-                    stroke="url(#goldRibbon)" 
-                    strokeWidth="2.5" 
-                    strokeDasharray="10 15"
-                    transform="rotate(35 200 200)"
-                  />
-                </svg>
-              </div>
-
               {/* Glowing back aura */}
-              <div className="absolute w-60 h-60 rounded-full bg-gradient-to-tr from-[#F3CA7E]/30 via-[#DFB76C]/40 to-transparent blur-3xl animate-pulse-gold pointer-events-none" />
+              <div className="absolute w-72 h-72 rounded-full bg-gradient-to-tr from-[#F3CA7E]/30 via-[#DFB76C]/40 to-transparent blur-3xl animate-pulse-gold pointer-events-none" />
 
-              {/* Floating Hero Burger Image */}
-              <div className="relative z-10 animate-float-slow drop-shadow-[0_25px_35px_rgba(223,183,108,0.25)]">
-                <SafeImage
-                  src="/images/burger.svg"
-                  name="Royal Burger"
-                  alt="Foodyx Signature Gourmet Burger"
-                  className="w-64 sm:w-80 h-64 sm:h-80 object-cover rounded-full border-4 border-[#DFB76C]/30 shadow-2xl p-1 bg-[#14141c]"
+              {/* Original Hero Burger Image directly from UI Mockup */}
+              <div className="relative z-10 animate-float-slow">
+                <img
+                  src="/images/hero-burger.png"
+                  alt="Foodyx Original Signature Gourmet Burger"
+                  className="w-80 sm:w-96 h-auto object-contain drop-shadow-[0_20px_35px_rgba(223,183,108,0.35)] rounded-3xl"
                 />
                 
                 {/* Floating Garnish 1: Rating Badge */}
-                <div className="absolute -top-3 -right-3 bg-[#161622]/95 backdrop-blur-md border border-[#DFB76C]/40 rounded-2xl px-3.5 py-2 flex items-center gap-2 shadow-xl animate-bounce">
+                <div className="absolute top-2 right-2 bg-[#161622]/95 backdrop-blur-md border border-[#DFB76C]/40 rounded-2xl px-3.5 py-2 flex items-center gap-2 shadow-xl animate-bounce">
                   <div className="w-5 h-5 rounded-full bg-[#DFB76C] text-[#0d0d12] flex items-center justify-center font-bold text-xs">
                     <Star className="w-3 h-3 fill-current" />
                   </div>
@@ -126,7 +88,7 @@ export const HeroSection = () => {
                 </div>
 
                 {/* Floating Garnish 2: Delivery Time */}
-                <div className="absolute -bottom-2 -left-4 bg-[#161622]/95 backdrop-blur-md border border-[#DFB76C]/40 rounded-2xl px-3.5 py-2 flex items-center gap-2 shadow-xl">
+                <div className="absolute bottom-4 left-0 bg-[#161622]/95 backdrop-blur-md border border-[#DFB76C]/40 rounded-2xl px-3.5 py-2 flex items-center gap-2 shadow-xl">
                   <div className="w-5 h-5 rounded-full bg-[#DFB76C]/20 text-[#DFB76C] flex items-center justify-center">
                     <Zap className="w-3 h-3 fill-current" />
                   </div>

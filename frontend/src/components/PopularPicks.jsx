@@ -10,7 +10,7 @@ export const PopularPicks = () => {
   const [selectedFood, setSelectedFood] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Exact dishes from the provided UI Mockup with reliable local images
+  // Exact dishes and images from the provided UI Mockup
   const POPULAR_ITEMS = [
     {
       id: 2,
@@ -22,7 +22,7 @@ export const PopularPicks = () => {
       restaurantId: 1,
       restaurantName: 'The Gourmet Hub',
       description: 'Overloaded with mozzarella, vintage cheddar, golden corn, and aromatic basil leaves.',
-      image: '/images/pizza.svg',
+      image: '/images/popular-pizza.png',
       options: [
         { name: 'Medium (10 inch)', extraPrice: 0 },
         { name: 'Large (12 inch)', extraPrice: 100 },
@@ -39,7 +39,7 @@ export const PopularPicks = () => {
       restaurantId: 1,
       restaurantName: 'The Gourmet Hub',
       description: 'Signature toasted brioche bun, succulent prime patty, caramelized onions and smoked cheddar.',
-      image: '/images/burger.svg',
+      image: '/images/popular-burger.png',
       options: [
         { name: 'Single Patty', extraPrice: 0 },
         { name: 'Double Patty Deluxe', extraPrice: 80 },
@@ -56,7 +56,7 @@ export const PopularPicks = () => {
       restaurantId: 1,
       restaurantName: 'The Gourmet Hub',
       description: 'Fettuccine drenched in silky butter-parmesan reduction infused with crushed roasted garlic.',
-      image: '/images/pasta.svg',
+      image: '/images/popular-pasta.png',
       options: [
         { name: 'Add Sautéed Mushrooms', extraPrice: 40 },
         { name: 'Add Grilled Chicken', extraPrice: 70 }
@@ -72,7 +72,7 @@ export const PopularPicks = () => {
       restaurantId: 1,
       restaurantName: 'The Gourmet Hub',
       description: 'Wok-tossed ramen noodles with crunchy peppers, fiery dragon chili glaze, and steamed edamame.',
-      image: '/images/dragon-bowl.svg',
+      image: '/images/popular-dragon.png',
       options: [
         { name: 'Mild Spice', extraPrice: 0 },
         { name: 'Extra Fiery Sichuan Chili', extraPrice: 20 },
@@ -122,7 +122,7 @@ export const PopularPicks = () => {
             onClick={() => handleOpenCustomize(item)}
             className="group relative rounded-3xl bg-[#14141c]/90 border border-white/5 hover:border-[#DFB76C]/30 p-3.5 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 cursor-pointer flex flex-col justify-between"
           >
-            {/* Food Image with SafeImage */}
+            {/* Authentic Food Image from Mockup */}
             <div className="relative aspect-square w-full rounded-2xl overflow-hidden bg-[#1d1d28] mb-3.5">
               <SafeImage
                 src={item.image}

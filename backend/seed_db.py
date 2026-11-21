@@ -12,7 +12,7 @@ from payments.models import Payment, Coupon
 from reviews.models import Review
 
 def run():
-    print("Clearing old data...")
+    print("Updating restaurant & food item images to local assets...")
     Review.objects.all().delete()
     Payment.objects.all().delete()
     OrderStatusHistory.objects.all().delete()
@@ -27,7 +27,6 @@ def run():
     Address.objects.all().delete()
     User.objects.all().delete()
 
-    print("Creating Users...")
     customer = User.objects.create_user(
         username='elakiya',
         email='customer@foodyx.com',
@@ -67,8 +66,7 @@ def run():
         role='admin'
     )
 
-    # Address
-    user_address = Address.objects.create(
+    Address.objects.create(
         user=customer,
         label='Home',
         line1='Flat 402, Golden Towers, Anna Nagar',
@@ -79,7 +77,6 @@ def run():
         is_default=True
     )
 
-    # Coupons
     Coupon.objects.create(
         code='FOOD50',
         discount_type='percent',
@@ -97,7 +94,6 @@ def run():
         description='20% OFF on gourmet meals above ₹299.'
     )
 
-    print("Creating Restaurants...")
     r1 = Restaurant.objects.create(
         owner=owner,
         name='The Gourmet Hub',
@@ -113,7 +109,7 @@ def run():
         delivery_time_mins=30,
         discount_percent=50,
         discount_code='FOOD50',
-        image='https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1000&q=80',
+        image='/images/gourmet-hub.svg',
         featured=True
     )
 
@@ -132,7 +128,7 @@ def run():
         delivery_time_mins=32,
         discount_percent=20,
         discount_code='PIZZA20',
-        image='https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1000&q=80',
+        image='/images/pizza-palace.svg',
         featured=True
     )
 
@@ -151,7 +147,7 @@ def run():
         delivery_time_mins=28,
         discount_percent=30,
         discount_code='BURGER30',
-        image='https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=1000&q=80',
+        image='/images/burger-blvd.svg',
         featured=True
     )
 
@@ -170,65 +166,26 @@ def run():
         delivery_time_mins=35,
         discount_percent=20,
         discount_code='PASTA20',
-        image='https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=1000&q=80',
+        image='/images/pasta-planet.svg',
         featured=True
     )
 
-    r5 = Restaurant.objects.create(
-        owner=owner,
-        name='Dragon Wok Express',
-        tagline='Fiery Sichuan delicacies & hot dim sums',
-        cuisines='Chinese, Asian, Dumplings',
-        address='15 TTK Road, T Nagar',
-        city='Chennai',
-        latitude=Decimal('13.0418'),
-        longitude=Decimal('80.2341'),
-        avg_rating=Decimal('4.6'),
-        total_reviews=9500,
-        cost_for_two=380,
-        delivery_time_mins=26,
-        discount_percent=35,
-        image='https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?auto=format&fit=crop&w=1000&q=80',
-        featured=False
-    )
-
-    r6 = Restaurant.objects.create(
-        owner=owner,
-        name='Green Gourmet Bowls',
-        tagline='Nutritious organic superfood salads & smoothies',
-        cuisines='Healthy, Salads, Beverages',
-        address='88 Wallace Garden, Nungambakkam',
-        city='Chennai',
-        latitude=Decimal('13.0645'),
-        longitude=Decimal('80.2460'),
-        avg_rating=Decimal('4.9'),
-        total_reviews=8200,
-        cost_for_two=420,
-        delivery_time_mins=22,
-        discount_percent=25,
-        image='https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1000&q=80',
-        featured=False
-    )
-
-    print("Creating Categories & Food Items...")
-    # R1: The Gourmet Hub
     c1_starters = Category.objects.create(restaurant=r1, name='Signature Starters', sort_order=1)
     c1_pizzas = Category.objects.create(restaurant=r1, name='Artisanal Pizzas', sort_order=2)
     c1_mains = Category.objects.create(restaurant=r1, name='Gourmet Mains', sort_order=3)
     c1_beverages = Category.objects.create(restaurant=r1, name='Beverages & Shakes', sort_order=4)
 
-    # Food Items matching UI Reference:
     f_pizza = FoodItem.objects.create(
         category=c1_pizzas,
         restaurant=r1,
         name='Cheesy Paradise Pizza',
-        description='Overloaded with mozzarella, vintage cheddar, golden corn, and aromatic basil leaves on hand-stretched sourdough crust.',
+        description='Overloaded with mozzarella, vintage cheddar, golden corn, and aromatic basil leaves.',
         price=Decimal('299.00'),
         is_veg=True,
         is_popular=True,
         avg_rating=Decimal('4.8'),
         total_reviews=12400,
-        image='https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80'
+        image='/images/pizza.svg'
     )
     ItemOption.objects.create(item=f_pizza, name='Medium (10 inch)', extra_price=Decimal('0.00'))
     ItemOption.objects.create(item=f_pizza, name='Large (12 inch)', extra_price=Decimal('100.00'))
@@ -238,29 +195,29 @@ def run():
         category=c1_mains,
         restaurant=r1,
         name='Royal Burger',
-        description='Signature toasted brioche bun, succulent prime patty, caramelized onions, smoked cheese and secret gold sauce.',
+        description='Signature toasted brioche bun, succulent prime patty, caramelized onions and secret sauce.',
         price=Decimal('249.00'),
         is_veg=False,
         is_popular=True,
         avg_rating=Decimal('4.7'),
         total_reviews=9200,
-        image='https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80'
+        image='/images/burger.svg'
     )
     ItemOption.objects.create(item=f_burger, name='Single Patty', extra_price=Decimal('0.00'))
-    ItemOption.objects.create(item=f_burger, name='Double Patty & Bacon', extra_price=Decimal('80.00'))
-    ItemOption.objects.create(item=f_burger, name='Add French Fries combo', extra_price=Decimal('50.00'))
+    ItemOption.objects.create(item=f_burger, name='Double Patty Deluxe', extra_price=Decimal('80.00'))
+    ItemOption.objects.create(item=f_burger, name='French Fries Add-on', extra_price=Decimal('50.00'))
 
     f_pasta = FoodItem.objects.create(
         category=c1_mains,
         restaurant=r1,
         name='Creamy Alfredo Pasta',
-        description='Fettuccine drenched in silky butter-parmesan reduction infused with crushed roasted garlic and garden herbs.',
+        description='Fettuccine drenched in silky butter-parmesan reduction infused with crushed roasted garlic.',
         price=Decimal('279.00'),
         is_veg=True,
         is_popular=True,
         avg_rating=Decimal('4.8'),
         total_reviews=7400,
-        image='https://images.unsplash.com/photo-1645112411341-6c4fd023714a?auto=format&fit=crop&w=800&q=80'
+        image='/images/pasta.svg'
     )
     ItemOption.objects.create(item=f_pasta, name='Add Sautéed Mushrooms', extra_price=Decimal('40.00'))
     ItemOption.objects.create(item=f_pasta, name='Add Grilled Chicken', extra_price=Decimal('70.00'))
@@ -269,13 +226,13 @@ def run():
         category=c1_mains,
         restaurant=r1,
         name='Spicy Dragon Bowl',
-        description='Wok-tossed ramen noodles with crunchy bell peppers, spicy dragon chili glaze, scallions, and steamed edamame.',
+        description='Wok-tossed ramen noodles with crunchy peppers, fiery dragon chili glaze, and steamed edamame.',
         price=Decimal('319.00'),
         is_veg=False,
         is_popular=True,
         avg_rating=Decimal('4.9'),
         total_reviews=10300,
-        image='https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800&q=80'
+        image='/images/dragon-bowl.svg'
     )
 
     f_coffee = FoodItem.objects.create(
@@ -288,7 +245,7 @@ def run():
         is_popular=True,
         avg_rating=Decimal('4.9'),
         total_reviews=4300,
-        image='https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=800&q=80'
+        image='/images/coffee.svg'
     )
 
     FoodItem.objects.create(
@@ -301,35 +258,9 @@ def run():
         is_popular=False,
         avg_rating=Decimal('4.7'),
         total_reviews=1800,
-        image='https://images.unsplash.com/photo-1576107232684-1279f3908594?auto=format&fit=crop&w=800&q=80'
+        image='/images/burger.svg'
     )
 
-    # R2 Pizza items
-    c2_pizzas = Category.objects.create(restaurant=r2, name='Woodfired Pizzas', sort_order=1)
-    FoodItem.objects.create(
-        category=c2_pizzas,
-        restaurant=r2,
-        name='Margherita Di Bufala',
-        description='San Marzano tomato sauce, fresh buffalo mozzarella, fresh basil, and extra virgin olive oil.',
-        price=Decimal('320.00'),
-        is_veg=True,
-        is_popular=True,
-        avg_rating=Decimal('4.8'),
-        image='https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=800&q=80'
-    )
-    FoodItem.objects.create(
-        category=c2_pizzas,
-        restaurant=r2,
-        name='Smoked BBQ Pepperoni',
-        description='Slow-cured spicy pepperoni slices atop rich marinara and melted mozzarella.',
-        price=Decimal('399.00'),
-        is_veg=False,
-        is_popular=True,
-        avg_rating=Decimal('4.9'),
-        image='https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=800&q=80'
-    )
-
-    # Sample Initial Active Order for Live Order Tracking Showcase!
     order1 = Order.objects.create(
         order_id='FDX-7429',
         user=customer,
@@ -381,7 +312,6 @@ def run():
         method='UPI'
     )
 
-    # Reviews
     Review.objects.create(
         order=order1,
         user=customer,
@@ -392,7 +322,7 @@ def run():
         reply='Thank you so much Elakiya! We are delighted you loved the pizza.'
     )
 
-    print("Database seeding completed successfully!")
+    print("Database seeding with local assets completed!")
 
 if __name__ == '__main__':
     run()

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="burgerLoungeBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1f1810"/>
+      <stop offset="50%" stop-color="#16141a"/>
+      <stop offset="100%" stop-color="#0a0a0f"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="400" rx="24" fill="url(#burgerLoungeBg)"/>
+
+  <!-- Neon Burger Sign Outline -->
+  <path d="M240 180 C240 130 360 130 360 180 Z" fill="none" stroke="#DFB76C" stroke-width="4"/>
+  <line x1="230" y1="200" x2="370" y2="200" stroke="#F59E0B" stroke-width="6" stroke-linecap="round"/>
+  <path d="M235 220 C245 240 355 240 365 220 Z" fill="none" stroke="#DFB76C" stroke-width="4"/>
+
+  <!-- Bar Counter -->
+  <rect x="50" y="280" width="500" height="30" rx="8" fill="#242436" stroke="#DFB76C" stroke-width="1.5"/>
+  <rect x="70" y="310" width="460" height="70" fill="#171724"/>
+
+  <!-- Signboard -->
+  <rect x="180" y="30" width="240" height="46" rx="10" fill="#14141c" stroke="#DFB76C" stroke-width="2"/>
+  <text x="300" y="58" fill="#DFB76C" font-family="serif" font-size="16" font-weight="bold" text-anchor="middle" letter-spacing="2">BURGER BOULEVARD</text>
+</svg>

@@ -8,7 +8,7 @@ const INITIAL_CART_ITEMS = [
     name: 'Royal Burger',
     price: 249,
     quantity: 1,
-    image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=400&q=80',
+    image: '/images/burger.svg',
     restaurantId: 1,
     restaurantName: 'The Gourmet Hub',
     options: ['Single Patty']
@@ -18,7 +18,7 @@ const INITIAL_CART_ITEMS = [
     name: 'Cheesy Paradise Pizza',
     price: 299,
     quantity: 1,
-    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=400&q=80',
+    image: '/images/pizza.svg',
     restaurantId: 1,
     restaurantName: 'The Gourmet Hub',
     options: ['Medium (10 inch)']
@@ -28,7 +28,7 @@ const INITIAL_CART_ITEMS = [
     name: 'Iced Coffee',
     price: 149,
     quantity: 1,
-    image: 'https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=400&q=80',
+    image: '/images/coffee.svg',
     restaurantId: 1,
     restaurantName: 'The Gourmet Hub',
     options: []
@@ -62,7 +62,6 @@ export const CartProvider = ({ children }) => {
   const currentRestaurantName = items.length > 0 ? items[0].restaurantName : '';
 
   const addToCart = (item, quantity = 1, options = [], note = '') => {
-    // Check single restaurant constraint (FR-C3)
     if (items.length > 0 && item.restaurantId && item.restaurantId !== currentRestaurantId) {
       setConflictModal({
         isOpen: true,
@@ -83,7 +82,7 @@ export const CartProvider = ({ children }) => {
           name: item.name,
           price: Number(item.price),
           quantity,
-          image: item.image,
+          image: item.image || '/images/burger.svg',
           restaurantId: item.restaurantId || item.restaurant || 1,
           restaurantName: item.restaurantName || currentRestaurantName || 'The Gourmet Hub',
           options,
@@ -103,7 +102,7 @@ export const CartProvider = ({ children }) => {
         name: p.name,
         price: Number(p.price),
         quantity: p.quantity || 1,
-        image: p.image,
+        image: p.image || '/images/burger.svg',
         restaurantId: p.restaurantId,
         restaurantName: p.restaurantName,
         options: p.options || [],
@@ -143,7 +142,6 @@ export const CartProvider = ({ children }) => {
     setCouponError('');
   };
 
-  // Recalculate bill
   const subtotal = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   const deliveryFee = subtotal > 500 || items.length === 0 ? 0 : 40;
   const platformFee = items.length > 0 ? 5 : 0;

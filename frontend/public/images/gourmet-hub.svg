@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="resBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1f1a14"/>
+      <stop offset="50%" stop-color="#14141c"/>
+      <stop offset="100%" stop-color="#0a0a0e"/>
+    </linearGradient>
+    <linearGradient id="warmLight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FDE047" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#CA8A04" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="600" height="400" rx="24" fill="url(#resBg)"/>
+
+  <!-- Interior Architectural Arches -->
+  <path d="M50 360 L50 140 Q150 60 250 140 L250 360 Z" fill="#181822" stroke="#DFB76C" stroke-width="1.5" opacity="0.7"/>
+  <path d="M250 360 L250 140 Q350 60 450 140 L450 360 Z" fill="#181822" stroke="#DFB76C" stroke-width="1.5" opacity="0.7"/>
+  <path d="M450 360 L450 140 Q525 80 600 140 L600 360 Z" fill="#181822" stroke="#DFB76C" stroke-width="1.5" opacity="0.7"/>
+
+  <!-- Warm Golden Chandeliers / Hanging Lamps -->
+  <g>
+    <line x1="150" y1="0" x2="150" y2="110" stroke="#DFB76C" stroke-width="2"/>
+    <circle cx="150" cy="118" r="16" fill="#FBBF24"/>
+    <polygon points="110,120 190,120 230,300 70,300" fill="url(#warmLight)" opacity="0.3"/>
+
+    <line x1="350" y1="0" x2="350" y2="90" stroke="#DFB76C" stroke-width="2"/>
+    <circle cx="350" cy="98" r="18" fill="#FBBF24"/>
+    <polygon points="310,100 390,100 440,300 260,300" fill="url(#warmLight)" opacity="0.3"/>
+
+    <line x1="520" y1="0" x2="520" y2="110" stroke="#DFB76C" stroke-width="2"/>
+    <circle cx="520" cy="118" r="16" fill="#FBBF24"/>
+  </g>
+
+  <!-- Luxury Dining Tables with Wine Glasses & Cloche -->
+  <g>
+    <!-- Table 1 -->
+    <ellipse cx="150" cy="310" rx="70" ry="20" fill="#252535" stroke="#DFB76C" stroke-width="1.5"/>
+    <path d="M135 295 A15 15 0 0 1 165 295 Z" fill="#DFB76C"/>
+    
+    <!-- Table 2 (Center VIP) -->
+    <ellipse cx="350" cy="290" rx="85" ry="25" fill="#20202e" stroke="#DFB76C" stroke-width="2"/>
+    <path d="M330 270 A20 20 0 0 1 370 270 Z" fill="#DFB76C"/>
+    <line x1="320" y1="260" x2="320" y2="280" stroke="#FFF" stroke-width="1.5" opacity="0.8"/>
+    <line x1="380" y1="260" x2="380" y2="280" stroke="#FFF" stroke-width="1.5" opacity="0.8"/>
+  </g>
+
+  <!-- Golden Brand Plaque -->
+  <rect x="220" y="30" width="160" height="42" rx="8" fill="#14141c" stroke="#DFB76C" stroke-width="2"/>
+  <text x="300" y="56" fill="#DFB76C" font-family="serif" font-size="16" font-weight="bold" text-anchor="middle" letter-spacing="2">THE GOURMET HUB</text>
+</svg>

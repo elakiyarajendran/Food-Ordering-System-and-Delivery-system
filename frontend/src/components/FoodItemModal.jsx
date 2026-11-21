@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { X, Plus, Minus, Check, Sparkles } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import { SafeImage } from './SafeImage';
 
 export const FoodItemModal = ({ item, isOpen, onClose }) => {
   const { addToCart } = useCart();
@@ -53,24 +54,25 @@ export const FoodItemModal = ({ item, isOpen, onClose }) => {
         className="relative w-full max-w-lg rounded-3xl bg-[#14141c] border border-[#DFB76C]/30 shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header Image */}
+        {/* Header Image with SafeImage */}
         <div className="relative h-48 w-full bg-[#1b1b26] shrink-0">
-          <img
-            src={item.image || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80'}
+          <SafeImage
+            src={item.image}
+            name={item.name}
             alt={item.name}
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#14141c] via-transparent to-black/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#14141c] via-transparent to-black/40 pointer-events-none" />
           
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center transition-colors"
+            className="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center transition-colors z-10"
           >
             <X className="w-5 h-5" />
           </button>
 
           {/* Veg / Non-Veg tag */}
-          <div className="absolute bottom-3 left-4 flex items-center gap-2">
+          <div className="absolute bottom-3 left-4 flex items-center gap-2 z-10">
             <span className={`px-2.5 py-0.5 rounded text-xs font-bold border flex items-center gap-1 ${
               item.is_veg 
                 ? 'bg-emerald-950/80 text-emerald-400 border-emerald-500/50' 
@@ -127,7 +129,7 @@ export const FoodItemModal = ({ item, isOpen, onClose }) => {
             </div>
           </div>
 
-          {/* Special Cooking Note (FR-F3) */}
+          {/* Special Cooking Note */}
           <div>
             <label className="text-xs font-semibold uppercase tracking-wider text-[#9E9EAA] block mb-1.5">
               Special Cooking Instructions (Optional)
@@ -142,7 +144,7 @@ export const FoodItemModal = ({ item, isOpen, onClose }) => {
           </div>
         </div>
 
-        {/* Footer: Quantity & Add Button */}
+        {/* Footer */}
         <div className="p-4 bg-[#101017] border-t border-[#DFB76C]/15 flex items-center justify-between gap-4 shrink-0">
           <div className="flex items-center bg-[#1c1c28] border border-white/10 rounded-full px-2 py-1">
             <button

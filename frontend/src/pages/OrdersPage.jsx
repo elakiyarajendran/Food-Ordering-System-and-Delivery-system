@@ -7,6 +7,7 @@ import {
 import { useAuth } from '../context/AuthContext';
 import { useCart } from '../context/CartContext';
 import { ReviewModal } from '../components/ReviewModal';
+import { SafeImage } from '../components/SafeImage';
 
 export const OrdersPage = () => {
   const { user } = useAuth();
@@ -16,7 +17,6 @@ export const OrdersPage = () => {
   const [orders, setOrders] = useState([]);
   const [selectedReviewOrder, setSelectedReviewOrder] = useState(null);
 
-  // Fallback orders matching the UI reference
   const MOCK_ORDERS = [
     {
       id: 1,
@@ -27,9 +27,9 @@ export const OrdersPage = () => {
       status: 'Out for delivery',
       total: 737,
       items: [
-        { name: 'Royal Burger', quantity: 1, price: 249 },
-        { name: 'Cheesy Paradise Pizza', quantity: 1, price: 299 },
-        { name: 'Iced Coffee', quantity: 1, price: 149 }
+        { name: 'Royal Burger', quantity: 1, price: 249, image: '/images/burger.svg' },
+        { name: 'Cheesy Paradise Pizza', quantity: 1, price: 299, image: '/images/pizza.svg' },
+        { name: 'Iced Coffee', quantity: 1, price: 149, image: '/images/coffee.svg' }
       ]
     },
     {
@@ -41,8 +41,8 @@ export const OrdersPage = () => {
       status: 'Delivered',
       total: 440,
       items: [
-        { name: 'Margherita Di Bufala', quantity: 1, price: 320 },
-        { name: 'Garlic Butter Sticks', quantity: 1, price: 120 }
+        { name: 'Margherita Di Bufala', quantity: 1, price: 320, image: '/images/pizza.svg' },
+        { name: 'Garlic Butter Sticks', quantity: 1, price: 120, image: '/images/pizza.svg' }
       ]
     }
   ];
@@ -73,7 +73,7 @@ export const OrdersPage = () => {
         price: it.price,
         restaurantId: 1,
         restaurantName: order.restaurant_name,
-        image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=400&q=80'
+        image: it.image || '/images/burger.svg'
       }, it.quantity || 1);
     });
     navigate('/payment');
@@ -126,7 +126,6 @@ export const OrdersPage = () => {
                   </p>
                 </div>
 
-                {/* Status Badge */}
                 <div className="flex items-center gap-2">
                   <span className={`px-3 py-1 rounded-full text-xs font-bold border flex items-center gap-1.5 ${
                     isActive 

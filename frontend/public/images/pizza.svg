@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <radialGradient id="pizzaBg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#2a2016"/>
+      <stop offset="100%" stop-color="#121218"/>
+    </radialGradient>
+    <radialGradient id="crust" cx="50%" cy="50%" r="50%">
+      <stop offset="68%" stop-color="#D97706"/>
+      <stop offset="90%" stop-color="#B45309"/>
+      <stop offset="100%" stop-color="#78350F"/>
+    </radialGradient>
+    <radialGradient id="cheeseBase" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FEF08A"/>
+      <stop offset="60%" stop-color="#FDE047"/>
+      <stop offset="85%" stop-color="#EAB308"/>
+      <stop offset="100%" stop-color="#CA8A04"/>
+    </radialGradient>
+    <filter id="pizzaShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <rect width="500" height="500" rx="36" fill="url(#pizzaBg)"/>
+
+  <!-- Ambient Light -->
+  <circle cx="250" cy="250" r="190" fill="#DFB76C" opacity="0.08" filter="blur(20px)"/>
+
+  <g filter="url(#pizzaShadow)">
+    <!-- Pizza Crust (Artisanal Sourdough) -->
+    <circle cx="250" cy="250" r="185" fill="url(#crust)"/>
+    
+    <!-- Marinara Sauce Border -->
+    <circle cx="250" cy="250" r="162" fill="#DC2626"/>
+
+    <!-- Melted Mozzarella & Cheddar Surface -->
+    <circle cx="250" cy="250" r="156" fill="url(#cheeseBase)"/>
+
+    <!-- Charred Woodfired Crust Blisters -->
+    <ellipse cx="250" cy="72" rx="12" ry="5" fill="#451A03" opacity="0.75"/>
+    <ellipse cx="370" cy="140" rx="8" ry="14" fill="#451A03" opacity="0.75"/>
+    <ellipse cx="400" cy="270" rx="6" ry="12" fill="#451A03" opacity="0.75"/>
+    <ellipse cx="330" cy="390" rx="15" ry="6" fill="#451A03" opacity="0.75"/>
+    <ellipse cx="160" cy="410" rx="12" ry="6" fill="#451A03" opacity="0.75"/>
+    <ellipse cx="80" cy="300" rx="5" ry="14" fill="#451A03" opacity="0.75"/>
+    <ellipse cx="120" cy="140" rx="10" ry="7" fill="#451A03" opacity="0.75"/>
+
+    <!-- Pepperoni / Salami / Chorizo Slices -->
+    <g>
+      <circle cx="210" cy="180" r="28" fill="#B91C1C" stroke="#991B1B" stroke-width="3"/>
+      <circle cx="205" cy="175" r="2" fill="#FCA5A5"/>
+      <circle cx="220" cy="185" r="2" fill="#FCA5A5"/>
+
+      <circle cx="310" cy="190" r="28" fill="#B91C1C" stroke="#991B1B" stroke-width="3"/>
+      <circle cx="305" cy="185" r="2" fill="#FCA5A5"/>
+      <circle cx="318" cy="195" r="2" fill="#FCA5A5"/>
+
+      <circle cx="260" cy="270" r="30" fill="#B91C1C" stroke="#991B1B" stroke-width="3"/>
+      <circle cx="255" cy="265" r="2.5" fill="#FCA5A5"/>
+      <circle cx="270" cy="275" r="2" fill="#FCA5A5"/>
+
+      <circle cx="180" cy="290" r="26" fill="#B91C1C" stroke="#991B1B" stroke-width="3"/>
+      <circle cx="330" cy="290" r="27" fill="#B91C1C" stroke="#991B1B" stroke-width="3"/>
+      <circle cx="230" cy="350" r="25" fill="#B91C1C" stroke="#991B1B" stroke-width="3"/>
+    </g>
+
+    <!-- Golden Sweet Corn Kernels -->
+    <g fill="#FBBF24">
+      <ellipse cx="160" cy="220" rx="7" ry="5" transform="rotate(20 160 220)"/>
+      <ellipse cx="270" cy="190" rx="7" ry="5" transform="rotate(-15 270 190)"/>
+      <ellipse cx="360" cy="240" rx="7" ry="5" transform="rotate(45 360 240)"/>
+      <ellipse cx="220" cy="240" rx="7" ry="5" transform="rotate(-30 220 240)"/>
+      <ellipse cx="300" cy="340" rx="7" ry="5" transform="rotate(10 300 340)"/>
+      <ellipse cx="160" cy="340" rx="7" ry="5" transform="rotate(-40 160 340)"/>
+    </g>
+
+    <!-- Fresh Basil Leaves -->
+    <g fill="#16A34A">
+      <path d="M250 140 C240 120, 270 115, 275 135 C275 145, 255 148, 250 140 Z"/>
+      <path d="M190 240 C175 230, 185 210, 200 220 C205 230, 195 242, 190 240 Z"/>
+      <path d="M290 230 C305 220, 315 235, 305 245 C295 245, 285 238, 290 230 Z"/>
+      <path d="M260 310 C250 295, 275 290, 280 305 C280 315, 265 318, 260 310 Z"/>
+    </g>
+
+    <!-- Black Olives -->
+    <g fill="#1E293B" stroke="#0F172A" stroke-width="2">
+      <circle cx="150" cy="180" r="11"/>
+      <circle cx="150" cy="180" r="4" fill="url(#cheeseBase)"/>
+
+      <circle cx="340" cy="145" r="11"/>
+      <circle cx="340" cy="145" r="4" fill="url(#cheeseBase)"/>
+
+      <circle cx="210" cy="330" r="11"/>
+      <circle cx="210" cy="330" r="4" fill="url(#cheeseBase)"/>
+
+      <circle cx="370" cy="310" r="11"/>
+      <circle cx="370" cy="310" r="4" fill="url(#cheeseBase)"/>
+    </g>
+  </g>
+
+  <!-- Sparkles -->
+  <polygon points="410,90 415,105 430,110 415,115 410,130 405,115 390,110 405,105" fill="#DFB76C"/>
+</svg>

@@ -3,13 +3,14 @@ import { Link } from 'react-router-dom';
 import { Star, Plus, ArrowRight } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { FoodItemModal } from './FoodItemModal';
+import { SafeImage } from './SafeImage';
 
 export const PopularPicks = () => {
   const { addToCart } = useCart();
   const [selectedFood, setSelectedFood] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Exact dishes from the provided UI Mockup
+  // Exact dishes from the provided UI Mockup with reliable local images
   const POPULAR_ITEMS = [
     {
       id: 2,
@@ -21,7 +22,7 @@ export const PopularPicks = () => {
       restaurantId: 1,
       restaurantName: 'The Gourmet Hub',
       description: 'Overloaded with mozzarella, vintage cheddar, golden corn, and aromatic basil leaves.',
-      image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80',
+      image: '/images/pizza.svg',
       options: [
         { name: 'Medium (10 inch)', extraPrice: 0 },
         { name: 'Large (12 inch)', extraPrice: 100 },
@@ -38,7 +39,7 @@ export const PopularPicks = () => {
       restaurantId: 1,
       restaurantName: 'The Gourmet Hub',
       description: 'Signature toasted brioche bun, succulent prime patty, caramelized onions and smoked cheddar.',
-      image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80',
+      image: '/images/burger.svg',
       options: [
         { name: 'Single Patty', extraPrice: 0 },
         { name: 'Double Patty Deluxe', extraPrice: 80 },
@@ -55,7 +56,7 @@ export const PopularPicks = () => {
       restaurantId: 1,
       restaurantName: 'The Gourmet Hub',
       description: 'Fettuccine drenched in silky butter-parmesan reduction infused with crushed roasted garlic.',
-      image: 'https://images.unsplash.com/photo-1645112411341-6c4fd023714a?auto=format&fit=crop&w=600&q=80',
+      image: '/images/pasta.svg',
       options: [
         { name: 'Add Sautéed Mushrooms', extraPrice: 40 },
         { name: 'Add Grilled Chicken', extraPrice: 70 }
@@ -71,7 +72,7 @@ export const PopularPicks = () => {
       restaurantId: 1,
       restaurantName: 'The Gourmet Hub',
       description: 'Wok-tossed ramen noodles with crunchy peppers, fiery dragon chili glaze, and steamed edamame.',
-      image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80',
+      image: '/images/dragon-bowl.svg',
       options: [
         { name: 'Mild Spice', extraPrice: 0 },
         { name: 'Extra Fiery Sichuan Chili', extraPrice: 20 },
@@ -121,14 +122,15 @@ export const PopularPicks = () => {
             onClick={() => handleOpenCustomize(item)}
             className="group relative rounded-3xl bg-[#14141c]/90 border border-white/5 hover:border-[#DFB76C]/30 p-3.5 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 cursor-pointer flex flex-col justify-between"
           >
-            {/* Food Image */}
+            {/* Food Image with SafeImage */}
             <div className="relative aspect-square w-full rounded-2xl overflow-hidden bg-[#1d1d28] mb-3.5">
-              <img
+              <SafeImage
                 src={item.image}
+                name={item.name}
                 alt={item.name}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
               
               {/* Veg / Non-Veg Indicator */}
               <div className="absolute top-2.5 left-2.5">

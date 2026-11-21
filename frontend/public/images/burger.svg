@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#2a2318"/>
+      <stop offset="100%" stop-color="#121218"/>
+    </radialGradient>
+    <linearGradient id="topBun" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F2A649"/>
+      <stop offset="45%" stop-color="#D97A26"/>
+      <stop offset="100%" stop-color="#9C4B0F"/>
+    </linearGradient>
+    <linearGradient id="patty" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#69371E"/>
+      <stop offset="50%" stop-color="#4A2111"/>
+      <stop offset="100%" stop-color="#2B1207"/>
+    </linearGradient>
+    <linearGradient id="cheese" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFDD55"/>
+      <stop offset="100%" stop-color="#E89E10"/>
+    </linearGradient>
+    <linearGradient id="lettuce" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#48BB78"/>
+      <stop offset="100%" stop-color="#2F855A"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="15" stdDeviation="18" flood-color="#000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <!-- Background Dish / Aura -->
+  <rect width="500" height="500" rx="36" fill="url(#bgGlow)"/>
+  <circle cx="250" cy="270" r="190" fill="#0b0b0e" opacity="0.6"/>
+  <circle cx="250" cy="270" r="160" fill="none" stroke="#DFB76C" stroke-width="2" stroke-dasharray="8 12" opacity="0.4"/>
+
+  <!-- Burger Plate Shadow -->
+  <ellipse cx="250" cy="400" rx="140" ry="25" fill="#000" opacity="0.6" filter="blur(8px)"/>
+
+  <!-- Burger Assembly -->
+  <g filter="url(#shadow)">
+    <!-- Bottom Bun -->
+    <path d="M140 340 Q250 375 360 340 Q365 375 345 390 Q250 405 155 390 Q135 375 140 340 Z" fill="#C56D1F"/>
+    <path d="M140 340 Q250 355 360 340 Q350 365 250 370 Q150 365 140 340 Z" fill="#9C4B0F"/>
+
+    <!-- Bottom Patty & Glaze -->
+    <path d="M125 315 C125 315, 250 325, 375 315 C385 335, 375 350, 360 352 C250 365, 140 352, 125 335 Z" fill="url(#patty)"/>
+    
+    <!-- Melted Cheddar Cheese Drips -->
+    <path d="M115 305 L385 305 L370 330 L340 315 L320 345 L290 315 L250 350 L220 315 L190 340 L160 315 L130 335 Z" fill="url(#cheese)"/>
+
+    <!-- Prime Smash Patty -->
+    <path d="M120 270 Q250 280 380 270 C390 295, 380 315, 365 318 Q250 325 135 318 C120 310, 110 290, 120 270 Z" fill="url(#patty)"/>
+
+    <!-- Melted Cheddar Top -->
+    <path d="M125 260 L375 260 L360 285 L320 270 L280 300 L240 270 L200 295 L160 270 L135 285 Z" fill="url(#cheese)"/>
+
+    <!-- Fresh Tomato Slices -->
+    <path d="M130 240 Q250 250 370 240 L365 262 Q250 272 135 262 Z" fill="#E53E3E"/>
+    <ellipse cx="200" cy="248" rx="45" ry="8" fill="#C53030"/>
+    <ellipse cx="300" cy="248" rx="45" ry="8" fill="#C53030"/>
+
+    <!-- Crisp Ruffled Lettuce -->
+    <path d="M105 235 Q130 215 155 235 Q180 215 205 235 Q230 215 255 235 Q280 215 305 235 Q330 215 355 235 Q380 215 395 235 Q400 255 385 255 Q250 265 115 255 Q100 245 105 235 Z" fill="url(#lettuce)"/>
+
+    <!-- Top Brioche Golden Bun -->
+    <path d="M120 225 C120 115, 380 115, 380 225 C380 240, 120 240, 120 225 Z" fill="url(#topBun)"/>
+    <!-- Bun Glaze Highlight -->
+    <ellipse cx="250" cy="155" rx="90" ry="32" fill="#FFE29E" opacity="0.35"/>
+
+    <!-- Golden Sesame Seeds -->
+    <g fill="#FFF5D6" opacity="0.9">
+      <ellipse cx="200" cy="150" rx="3.5" ry="2" transform="rotate(-15 200 150)"/>
+      <ellipse cx="240" cy="140" rx="4" ry="2" transform="rotate(10 240 140)"/>
+      <ellipse cx="280" cy="145" rx="3.5" ry="2" transform="rotate(-20 280 145)"/>
+      <ellipse cx="170" cy="175" rx="4" ry="2.2" transform="rotate(25 170 175)"/>
+      <ellipse cx="220" cy="170" rx="3.5" ry="2" transform="rotate(-5 220 170)"/>
+      <ellipse cx="260" cy="165" rx="4" ry="2.2" transform="rotate(15 260 165)"/>
+      <ellipse cx="310" cy="175" rx="3.5" ry="2" transform="rotate(-30 310 175)"/>
+      <ellipse cx="190" cy="195" rx="4" ry="2" transform="rotate(10 190 195)"/>
+      <ellipse cx="245" cy="190" rx="3.5" ry="2" transform="rotate(-10 245 190)"/>
+      <ellipse cx="295" cy="195" rx="4" ry="2" transform="rotate(20 295 195)"/>
+      <ellipse cx="340" cy="190" rx="3.5" ry="2" transform="rotate(-15 340 190)"/>
+    </g>
+  </g>
+
+  <!-- Golden Sparkles -->
+  <polygon points="400,120 405,135 420,140 405,145 400,160 395,145 380,140 395,135" fill="#DFB76C" opacity="0.8"/>
+  <polygon points="90,180 93,190 103,193 93,196 90,206 87,196 77,193 87,190" fill="#DFB76C" opacity="0.8"/>
+  <polygon points="360,370 363,378 371,380 363,382 360,390 357,382 349,380 357,378" fill="#DFB76C" opacity="0.8"/>
+</svg>

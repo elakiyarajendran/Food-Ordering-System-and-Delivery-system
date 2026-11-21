@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <radialGradient id="dragonBg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#2d1515"/>
+      <stop offset="100%" stop-color="#121218"/>
+    </radialGradient>
+    <linearGradient id="ramenBowl" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#991B1B"/>
+      <stop offset="50%" stop-color="#7F1D1D"/>
+      <stop offset="100%" stop-color="#450A0A"/>
+    </linearGradient>
+    <filter id="dragonShadow">
+      <feDropShadow dx="0" dy="16" stdDeviation="16" flood-color="#000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <rect width="500" height="500" rx="36" fill="url(#dragonBg)"/>
+
+  <!-- Asian Lacquered Dragon Bowl -->
+  <g filter="url(#dragonShadow)">
+    <circle cx="250" cy="250" r="180" fill="url(#ramenBowl)" stroke="#DFB76C" stroke-width="3"/>
+    <!-- Dragon gold motif on rim -->
+    <circle cx="250" cy="250" r="172" fill="none" stroke="#DFB76C" stroke-dasharray="4 8" stroke-width="1.5" opacity="0.6"/>
+    <!-- Fiery Sichuan Broth -->
+    <circle cx="250" cy="250" r="148" fill="#DC2626"/>
+
+    <!-- Steaming Wok Ramen Noodles -->
+    <g fill="none" stroke="#FEF08A" stroke-width="9" stroke-linecap="round">
+      <path d="M170 230 Q220 280 270 230 Q320 180 340 240"/>
+      <path d="M190 210 Q240 160 290 220 Q330 270 300 290"/>
+      <path d="M160 260 Q210 320 260 260 Q310 200 320 250"/>
+      <path d="M210 270 Q260 210 300 270"/>
+    </g>
+
+    <!-- Steamed Dumplings / Gyoza -->
+    <path d="M160 180 C150 150, 200 150, 215 180 C200 195, 170 195, 160 180 Z" fill="#FEF9C3" stroke="#CA8A04" stroke-width="2"/>
+    <path d="M215 160 C205 130, 255 130, 270 160 C255 175, 225 175, 215 160 Z" fill="#FEF9C3" stroke="#CA8A04" stroke-width="2"/>
+
+    <!-- Green Edamame Pods & Scallions -->
+    <g fill="#16A34A">
+      <circle cx="290" cy="180" r="9"/>
+      <circle cx="305" cy="190" r="9"/>
+      <circle cx="320" cy="200" r="9"/>
+
+      <rect x="230" y="270" width="16" height="6" rx="2" transform="rotate(30 230 270)"/>
+      <rect x="260" y="280" width="16" height="6" rx="2" transform="rotate(-15 260 280)"/>
+      <rect x="210" y="240" width="16" height="6" rx="2" transform="rotate(45 210 240)"/>
+      <rect x="280" y="250" width="16" height="6" rx="2" transform="rotate(-40 280 250)"/>
+    </g>
+
+    <!-- Seasoned Ramen Soft-Boiled Egg -->
+    <ellipse cx="260" cy="220" rx="32" ry="24" fill="#FFFFFF" transform="rotate(-20 260 220)"/>
+    <circle cx="260" cy="220" r="14" fill="#F97316"/>
+
+    <!-- Wooden Chopsticks resting -->
+    <line x1="120" y1="120" x2="380" y2="380" stroke="#78350F" stroke-width="8" stroke-linecap="round"/>
+    <line x1="140" y1="110" x2="400" y2="370" stroke="#9A3412" stroke-width="6" stroke-linecap="round"/>
+  </g>
+
+  <!-- Sparkles -->
+  <polygon points="420,100 425,115 440,120 425,125 420,140 415,125 400,120 415,115" fill="#DFB76C"/>
+</svg>

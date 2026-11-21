@@ -3,9 +3,9 @@ import { HeroSection } from '../components/HeroSection';
 import { PopularPicks } from '../components/PopularPicks';
 import { Link } from 'react-router-dom';
 import { Star, Clock, Tag, ArrowRight, Sparkles } from 'lucide-react';
+import { SafeImage } from '../components/SafeImage';
 
 export const HomePage = () => {
-  // Top Featured restaurants preview
   const FEATURED_RESTAURANTS = [
     {
       id: 1,
@@ -15,7 +15,7 @@ export const HomePage = () => {
       time: '30 min',
       cost: '₹500 for two',
       discount: '50% OFF',
-      image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80'
+      image: '/images/gourmet-hub.svg'
     },
     {
       id: 2,
@@ -25,7 +25,7 @@ export const HomePage = () => {
       time: '32 min',
       cost: '₹400 for two',
       discount: '20% OFF',
-      image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80'
+      image: '/images/pizza-palace.svg'
     },
     {
       id: 3,
@@ -35,7 +35,7 @@ export const HomePage = () => {
       time: '28 min',
       cost: '₹350 for two',
       discount: '30% OFF',
-      image: 'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=600&q=80'
+      image: '/images/burger-blvd.svg'
     },
     {
       id: 4,
@@ -45,16 +45,14 @@ export const HomePage = () => {
       time: '35 min',
       cost: '₹450 for two',
       discount: '20% OFF',
-      image: 'https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=600&q=80'
+      image: '/images/pasta-planet.svg'
     }
   ];
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
       <HeroSection />
 
-      {/* Popular Picks (Matches UI Mockup) */}
       <PopularPicks />
 
       {/* Featured Restaurants Section */}
@@ -86,16 +84,17 @@ export const HomePage = () => {
               className="group rounded-3xl bg-[#14141c]/90 border border-white/5 hover:border-[#DFB76C]/30 p-3.5 shadow-xl transition-all duration-300 hover:-translate-y-1 block"
             >
               <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-[#1d1d28] mb-3">
-                <img
+                <SafeImage
                   src={res.image}
+                  name={res.name}
+                  type="restaurant"
                   alt={res.name}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
                 
-                {/* Discount Badge */}
                 <div className="absolute bottom-2.5 left-2.5 bg-[#DFB76C] text-[#0d0d12] text-[10px] font-extrabold px-2.5 py-0.5 rounded-full flex items-center gap-1 shadow-md">
-                  <Tag className="w-3 h-3" />
+                  <Tag className="w-3.5 h-3.5" />
                   <span>{res.discount}</span>
                 </div>
               </div>
@@ -126,7 +125,7 @@ export const HomePage = () => {
         </div>
       </section>
 
-      {/* Promotional Banner: Taste the Extraordinary */}
+      {/* Promotional Banner */}
       <section className="py-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative rounded-3xl overflow-hidden p-8 sm:p-12 bg-gradient-to-r from-[#171724] via-[#1f1f2e] to-[#121218] border border-[#DFB76C]/30 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-3 text-center md:text-left">

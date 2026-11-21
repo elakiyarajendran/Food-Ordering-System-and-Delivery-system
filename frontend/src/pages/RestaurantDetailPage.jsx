@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { FoodItemModal } from '../components/FoodItemModal';
+import { SafeImage } from '../components/SafeImage';
 
 export const RestaurantDetailPage = () => {
   const { id } = useParams();
@@ -18,7 +19,6 @@ export const RestaurantDetailPage = () => {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Fallback data if backend is starting
   const FALLBACK_DETAIL = {
     id: 1,
     name: 'The Gourmet Hub',
@@ -31,7 +31,7 @@ export const RestaurantDetailPage = () => {
     delivery_time_mins: 30,
     discount_percent: 50,
     discount_code: 'FOOD50',
-    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/restaurant-cover.svg',
     categories: [
       {
         id: 1,
@@ -43,7 +43,7 @@ export const RestaurantDetailPage = () => {
             description: 'Crisp hand-cut golden potatoes tossed in Italian white truffle oil and freshly grated parmesan.',
             price: 189,
             is_veg: true,
-            image: 'https://images.unsplash.com/photo-1576107232684-1279f3908594?auto=format&fit=crop&w=400&q=80'
+            image: '/images/burger.svg'
           },
           {
             id: 102,
@@ -51,7 +51,7 @@ export const RestaurantDetailPage = () => {
             description: 'Tender calamari rings dusted in herbed semolina, fried crisp and served with garlic aioli.',
             price: 249,
             is_veg: false,
-            image: 'https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?auto=format&fit=crop&w=400&q=80'
+            image: '/images/dragon-bowl.svg'
           }
         ]
       },
@@ -66,7 +66,7 @@ export const RestaurantDetailPage = () => {
             price: 299,
             is_veg: true,
             is_popular: true,
-            image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=400&q=80'
+            image: '/images/pizza.svg'
           },
           {
             id: 202,
@@ -74,7 +74,7 @@ export const RestaurantDetailPage = () => {
             description: 'Slow-cured spicy pepperoni slices atop rich marinara and melted mozzarella.',
             price: 389,
             is_veg: false,
-            image: 'https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=400&q=80'
+            image: '/images/pizza.svg'
           }
         ]
       },
@@ -89,7 +89,7 @@ export const RestaurantDetailPage = () => {
             price: 249,
             is_veg: false,
             is_popular: true,
-            image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=400&q=80'
+            image: '/images/burger.svg'
           },
           {
             id: 3,
@@ -98,7 +98,7 @@ export const RestaurantDetailPage = () => {
             price: 279,
             is_veg: true,
             is_popular: true,
-            image: 'https://images.unsplash.com/photo-1645112411341-6c4fd023714a?auto=format&fit=crop&w=400&q=80'
+            image: '/images/pasta.svg'
           },
           {
             id: 4,
@@ -107,7 +107,7 @@ export const RestaurantDetailPage = () => {
             price: 319,
             is_veg: false,
             is_popular: true,
-            image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=400&q=80'
+            image: '/images/dragon-bowl.svg'
           }
         ]
       },
@@ -121,7 +121,7 @@ export const RestaurantDetailPage = () => {
             description: 'Slow-brewed dark roast espresso shaken over crystal ice with velvety whipped cream.',
             price: 149,
             is_veg: true,
-            image: 'https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=400&q=80'
+            image: '/images/coffee.svg'
           },
           {
             id: 302,
@@ -129,7 +129,7 @@ export const RestaurantDetailPage = () => {
             description: 'Warm dark chocolate cake with a molten center, served with vanilla bean ice cream.',
             price: 199,
             is_veg: true,
-            image: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=400&q=80'
+            image: '/images/coffee.svg'
           }
         ]
       }
@@ -176,14 +176,16 @@ export const RestaurantDetailPage = () => {
   return (
     <div className="min-h-screen pb-20">
       
-      {/* Cover Banner */}
+      {/* Cover Banner with SafeImage */}
       <div className="relative h-64 sm:h-80 w-full overflow-hidden bg-[#15151e]">
-        <img
-          src={restaurant.image}
+        <SafeImage
+          src={restaurant.image || '/images/restaurant-cover.svg'}
+          name={restaurant.name}
+          type="restaurant"
           alt={restaurant.name}
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0b0b0e] via-[#0b0b0e]/60 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0b0b0e] via-[#0b0b0e]/60 to-transparent pointer-events-none" />
         
         {/* Back Link */}
         <div className="absolute top-6 left-4 sm:left-8 z-10">
@@ -238,11 +240,11 @@ export const RestaurantDetailPage = () => {
         </div>
       </div>
 
-      {/* Menu Layout: Category Rail + Food List */}
+      {/* Menu Layout */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           
-          {/* Sticky Category Navigator (SRS FR-R2) */}
+          {/* Sticky Category Navigator */}
           <div className="lg:col-span-3">
             <div className="sticky top-28 bg-[#121219] rounded-2xl border border-white/5 p-4 space-y-1">
               <h3 className="text-xs font-bold uppercase tracking-wider text-[#DFB76C] px-3 pb-2 border-b border-white/5">
@@ -285,7 +287,6 @@ export const RestaurantDetailPage = () => {
                       >
                         <div className="flex-1 flex flex-col justify-between">
                           <div>
-                            {/* Veg Indicator */}
                             <span className={`w-3.5 h-3.5 rounded-sm border inline-flex items-center justify-center mb-1.5 ${
                               item.is_veg ? 'border-emerald-500 bg-emerald-950/60' : 'border-rose-500 bg-rose-950/60'
                             }`}>
@@ -307,8 +308,9 @@ export const RestaurantDetailPage = () => {
 
                         {/* Image & Add Button */}
                         <div className="relative w-24 h-24 rounded-2xl overflow-hidden bg-[#20202e] shrink-0">
-                          <img
+                          <SafeImage
                             src={item.image}
+                            name={item.name}
                             alt={item.name}
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                           />

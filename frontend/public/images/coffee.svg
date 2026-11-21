@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <radialGradient id="coffeeBg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#241a15"/>
+      <stop offset="100%" stop-color="#121218"/>
+    </radialGradient>
+    <linearGradient id="glass" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.4"/>
+      <stop offset="20%" stop-color="#FFFFFF" stop-opacity="0.1"/>
+      <stop offset="80%" stop-color="#FFFFFF" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.5"/>
+    </linearGradient>
+    <linearGradient id="espresso" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#EAB308"/>
+      <stop offset="25%" stop-color="#92400E"/>
+      <stop offset="70%" stop-color="#451A03"/>
+      <stop offset="100%" stop-color="#1E0B02"/>
+    </linearGradient>
+    <filter id="coffeeShadow">
+      <feDropShadow dx="0" dy="18" stdDeviation="16" flood-color="#000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <rect width="500" height="500" rx="36" fill="url(#coffeeBg)"/>
+
+  <!-- Glass Shadow -->
+  <ellipse cx="250" cy="420" rx="90" ry="18" fill="#000" opacity="0.6" filter="blur(6px)"/>
+
+  <g filter="url(#coffeeShadow)">
+    <!-- Tall Barista Glass Outline -->
+    <path d="M170 160 L190 390 Q192 410 250 410 Q308 410 310 390 L330 160 Z" fill="url(#espresso)"/>
+    
+    <!-- Floating Crystal Ice Cubes -->
+    <rect x="200" y="220" width="45" height="45" rx="8" fill="#FFFFFF" opacity="0.4" stroke="#FFF" stroke-width="1.5" transform="rotate(15 200 220)"/>
+    <rect x="250" y="270" width="48" height="48" rx="8" fill="#FFFFFF" opacity="0.35" stroke="#FFF" stroke-width="1.5" transform="rotate(-20 250 270)"/>
+    <rect x="210" y="320" width="42" height="42" rx="8" fill="#FFFFFF" opacity="0.4" stroke="#FFF" stroke-width="1.5" transform="rotate(10 210 320)"/>
+
+    <!-- Velvety Whipped Cream Topping -->
+    <path d="M165 160 C165 110, 210 90, 250 85 C290 90, 335 110, 335 160 C335 180, 165 180, 165 160 Z" fill="#FFFBEB"/>
+    <path d="M200 130 C220 100, 270 95, 290 120 C270 140, 220 140, 200 130 Z" fill="#FEF3C7"/>
+    <circle cx="250" cy="95" r="14" fill="#DFB76C"/>
+
+    <!-- Golden Caramel Drizzle -->
+    <path d="M190 140 Q250 170 310 130 Q270 160 210 150" stroke="#B45309" stroke-width="5" fill="none" stroke-linecap="round"/>
+
+    <!-- Glass Reflection Overlay -->
+    <path d="M170 160 L190 390 Q192 410 250 410 Q308 410 310 390 L330 160 Z" fill="url(#glass)"/>
+    
+    <!-- Glass Highlight Line -->
+    <path d="M185 170 L202 380" stroke="#FFF" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+
+    <!-- Golden Metallic Drinking Straw -->
+    <line x1="280" y1="50" x2="230" y2="380" stroke="#DFB76C" stroke-width="10" stroke-linecap="round"/>
+    <line x1="278" y1="50" x2="228" y2="380" stroke="#FFE29E" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- Sparkles -->
+  <polygon points="380,100 384,112 396,116 384,120 380,132 376,120 364,116 376,112" fill="#DFB76C"/>
+</svg>

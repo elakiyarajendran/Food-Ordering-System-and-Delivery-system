@@ -4,6 +4,7 @@ import {
   ArrowRight, Play, Zap, ShieldCheck, 
   Crown, Headphones, Sparkles, Star 
 } from 'lucide-react';
+import { SafeImage } from './SafeImage';
 
 export const HeroSection = () => {
   const navigate = useNavigate();
@@ -82,7 +83,6 @@ export const HeroSection = () => {
                       </feMerge>
                     </filter>
                   </defs>
-                  {/* Elliptical swooshing trajectory */}
                   <ellipse 
                     cx="200" cy="200" rx="175" ry="95" 
                     fill="none" 
@@ -107,8 +107,9 @@ export const HeroSection = () => {
 
               {/* Floating Hero Burger Image */}
               <div className="relative z-10 animate-float-slow drop-shadow-[0_25px_35px_rgba(223,183,108,0.25)]">
-                <img
-                  src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=700&q=85"
+                <SafeImage
+                  src="/images/burger.svg"
+                  name="Royal Burger"
                   alt="Foodyx Signature Gourmet Burger"
                   className="w-64 sm:w-80 h-64 sm:h-80 object-cover rounded-full border-4 border-[#DFB76C]/30 shadow-2xl p-1 bg-[#14141c]"
                 />
@@ -141,7 +142,7 @@ export const HeroSection = () => {
 
         </div>
 
-        {/* 4 Feature Cards (exact match to UI mockup) */}
+        {/* 4 Feature Cards */}
         <div className="mt-16 sm:mt-20 pt-8 border-t border-[#DFB76C]/10 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
           {[
             {

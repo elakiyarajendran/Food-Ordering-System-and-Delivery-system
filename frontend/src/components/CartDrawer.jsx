@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { X, Trash2, Plus, Minus, ArrowRight, Tag, ShoppingBag, Gift } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import { SafeImage } from './SafeImage';
 
 export const CartDrawer = () => {
   const { 
@@ -103,12 +104,15 @@ export const CartDrawer = () => {
                       key={item.id}
                       className="p-3.5 rounded-2xl bg-[#171722] border border-white/5 flex items-center justify-between gap-3 group hover:border-[#DFB76C]/30 transition-all"
                     >
-                      {/* Image Thumbnail */}
-                      <img
-                        src={item.image}
-                        alt={item.name}
-                        className="w-14 h-14 rounded-xl object-cover bg-[#222230] shrink-0"
-                      />
+                      {/* Safe Image Thumbnail */}
+                      <div className="w-14 h-14 rounded-xl overflow-hidden bg-[#222230] shrink-0">
+                        <SafeImage
+                          src={item.image}
+                          name={item.name}
+                          alt={item.name}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
 
                       {/* Details */}
                       <div className="flex-1 min-w-0">
@@ -141,7 +145,7 @@ export const CartDrawer = () => {
                   ))}
                 </div>
 
-                {/* Promo Code Card (Matches UI Mockup) */}
+                {/* Promo Code Card */}
                 <div className="p-4 rounded-2xl bg-gradient-to-r from-[#DFB76C]/10 via-[#F3CA7E]/5 to-transparent border border-[#DFB76C]/30 flex items-center justify-between gap-3">
                   <div className="flex items-center gap-3">
                     <div className="w-9 h-9 rounded-xl bg-[#DFB76C]/20 text-[#DFB76C] flex items-center justify-center shrink-0">
@@ -173,7 +177,7 @@ export const CartDrawer = () => {
                 {couponError && <p className="text-xs text-rose-400">{couponError}</p>}
                 {couponSuccess && <p className="text-xs text-emerald-400">{couponSuccess}</p>}
 
-                {/* Price Breakdown (Matches UI Mockup Screen) */}
+                {/* Price Breakdown */}
                 <div className="p-4 rounded-2xl bg-[#161622] border border-white/5 space-y-2 text-xs">
                   <div className="flex justify-between text-[#9E9EAA]">
                     <span>Subtotal</span>
@@ -224,7 +228,7 @@ export const CartDrawer = () => {
         </div>
       </div>
 
-      {/* Single Restaurant Rule Conflict Modal (SRS FR-C3) */}
+      {/* Conflict Modal */}
       {conflictModal.isOpen && (
         <div className="fixed inset-0 z-60 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
           <div className="w-full max-w-sm rounded-3xl bg-[#161622] border border-[#DFB76C]/40 p-6 text-center space-y-4 shadow-2xl">
